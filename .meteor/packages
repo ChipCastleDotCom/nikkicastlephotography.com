@@ -9,3 +9,4 @@ twbs:bootstrap
 manuelschoebel:ms-seo
 spectrum:photoswipe
 coffeescript
+iron:router
