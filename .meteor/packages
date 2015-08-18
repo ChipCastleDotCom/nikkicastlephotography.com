@@ -7,8 +7,8 @@
 meteor-platform
 twbs:bootstrap
 manuelschoebel:ms-seo
-spectrum:photoswipe
 coffeescript
 iron:router
 sacha:spin
 goltfisch:jquery-backstretch
+udondan:slick
