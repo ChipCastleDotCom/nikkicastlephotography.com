@@ -1,4 +1,5 @@
 Template.photos.onRendered ->
+  $.backstretch 'destroy', false
   $('#carousel').slick
     autoplay: true
     autoplaySpeed: 5000
