@@ -3,8 +3,3 @@ Meteor.startup ->
     title: 'Nikki Castle Photography'
     meta: 'description': 'Photography services for Destin, Santa Rosa Beach and 30-A Florida'
     og: 'image': 'http://nikkicastlephotography.com/images/nikki.jpg')
-
-  AdminConfig =
-    adminEmails: ['chip@chipcastle.com']
-    collections:
-      Prints: {}

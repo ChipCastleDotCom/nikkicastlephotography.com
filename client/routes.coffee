@@ -11,6 +11,8 @@ Router.map ->
     path: '/photos'
   @route 'contact',
     path: '/contact'
+  @route 'adminLogin',
+    path: '/adminLogin'
   @route 'notFound',
     path: '*'
     where: 'server'
