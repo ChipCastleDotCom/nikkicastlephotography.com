@@ -13,6 +13,9 @@ Router.map ->
     path: '/contact'
   @route 'adminLogin',
     path: '/adminLogin'
+  @route "profile",
+    waitOn: ->
+      [Meteor.subscribe 'images']
   @route 'notFound',
     path: '*'
     where: 'server'

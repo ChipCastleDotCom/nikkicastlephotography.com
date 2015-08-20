@@ -21,3 +21,7 @@ accounts-password
 alanning:roles
 fortawesome:fontawesome
 accounts-ui
+cfs:standard-packages
+cfs:filesystem
+aldeed:autoform
+yogiben:autoform-file
