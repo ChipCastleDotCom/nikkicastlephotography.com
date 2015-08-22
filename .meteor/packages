@@ -25,3 +25,4 @@ cfs:standard-packages
 cfs:filesystem
 aldeed:autoform
 yogiben:autoform-file
+cfs:graphicsmagick
