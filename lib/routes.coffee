@@ -4,12 +4,12 @@ loginRedirect = (newRoute) ->
   @next()
   return
 
-appRoutes = ->
-  _.each Router.routes, (route) ->
-    type = Object.prototype.toString.call route
-    if type == "[object Function]"
-      console.log route.getName()
-  return
+#appRoutes = ->
+#  _.each Router.routes, (route) ->
+#    type = Object.prototype.toString.call route
+#    if type == "[object Function]"
+#      console.log route.getName()
+#  return
 
 Router.configure
   layoutTemplate: 'layout',
