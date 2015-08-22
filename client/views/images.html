@@ -1,0 +1,10 @@
+<template name="images">
+  {{> quickForm collection="Prints" type="insert" id="printUpload"}}
+  {{#each images}}
+    <p>
+      {{ this.copies.images.key}}
+      <img src="{{this.url}}">
+      <button type="button" class="button" data-id="{{this._id}}">Remove</button>
+    </p>
+  {{/each}}
+</template>

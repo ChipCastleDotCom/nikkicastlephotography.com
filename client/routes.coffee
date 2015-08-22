@@ -13,9 +13,9 @@ Router.map ->
     path: '/contact'
   @route 'adminLogin',
     path: '/adminLogin'
-  @route "profile",
+  @route 'images',
     waitOn: ->
-      [Meteor.subscribe 'images']
+      Meteor.subscribe 'images'
   @route 'notFound',
     path: '*'
     where: 'server'
