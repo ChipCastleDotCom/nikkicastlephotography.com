@@ -1,3 +1,7 @@
+Template.photos.helpers
+  images: ->
+    Images.find()
+
 Template.photos.onRendered ->
   $.backstretch 'destroy', false
   $('#carousel').slick

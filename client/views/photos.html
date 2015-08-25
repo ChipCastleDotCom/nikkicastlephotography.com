@@ -1,9 +1,8 @@
 <template name="photos">
   <h1 id="header">PHOTOS</h1>
   <div id="carousel">
-    <div><img width="100%" src="/images/lakemood9.jpg"></div>
-    <div><img width="100%" src="/images/lakemoods4.jpg"></div>
-    <div><img width="100%" src="/images/oceammoods8.jpg"></div>
-    <div><img width="100%" src="/images/oceanmoodcanvas.jpg"></div>
+    {{#each images}}
+      <div><img width="100%" src="{{this.url}}"></div>
+    {{/each}}
   </div>
 </template>
