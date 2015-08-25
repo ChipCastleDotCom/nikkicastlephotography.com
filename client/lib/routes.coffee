@@ -22,13 +22,6 @@ Router.map ->
   @route 'adminPanel',
     waitOn: ->
       Meteor.subscribe 'images'
-  @route 'notFound',
-    path: '*'
-    where: 'server'
-    action: ->
-      @response.statusCode = 404
-      @response.end Handlebars.templates['404']()
-      return
 
 requireLogin = () ->
   if !Meteor.userId()
