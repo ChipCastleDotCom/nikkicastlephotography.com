@@ -35,5 +35,6 @@ Router.map ->
 
 Router.onBeforeAction loginRedirect, only: ['login']
 
-Accounts.onLogin ->
-  Router.go 'adminPanel'
+if Meteor.isClient
+  Accounts.onLogin ->
+    Router.go 'adminPanel'
