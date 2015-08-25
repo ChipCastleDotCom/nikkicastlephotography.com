@@ -12,6 +12,9 @@
                     <li><a href="/prints">Prints for Purchase</a></li>
                     <li><a href="/about">About</a></li>
                     <li><a href="/contact">Contact</a></li>
+                    {{#if currentUser}}
+                      <li><a href="/adminPanel">Admin Panel</a></li>
+                    {{/if}}
                 </ul>
                 <ul class="nav hidden-xs" id="sidebar-footer">
                 </ul>
