@@ -1,30 +1,15 @@
 #FS.debug = true
 imageStore = new FS.Store.FileSystem('images',
   transformWrite: (fileObj, readStream, writeStream) ->
-    getSize = (callback) ->
-      console.log 'getSize'
-
-      gm(readStream).size (err, size) ->
-        console.log 'gm.size() ', size
-        callback err, size
-        return
-      return
-
-    getSizeSync = Meteor.wrapAsync(getSize, @)
-    getSizeSync (err, size) ->
-      console.log 'inside getSizeSync '
-      console.log 'err ', err
-      console.log 'size ', size
-
-      x = 10
-      y = 10
-      y = size.height - 10 if size and size.height
+    gm(readStream, fileObj.name()).size {bufferStream: true}, (err, size) ->
+      if err
+        console.log 'error with getting image size'
+        console.log err
+      x = 5
+      y = 5
+      y = size.height - 5 if size and size.height
       text = 'Nikki Castle Photography'
-      gm(readStream, fileObj.name())
-        .fill('white')
-        .drawText(x, y, text)
-        .stream()
-        .pipe writeStream
+      @fill('white').drawText(x, y, text).stream().pipe writeStream
       return
     return
 )
