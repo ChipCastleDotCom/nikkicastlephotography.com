@@ -1,0 +1,7 @@
+<template name="manageCarouselPhotos">
+  <h1 id="heading">Manage Carousel Photos</h1>
+  {{> quickForm collection="CarouselPhotos" type="insert" id="printUpload"}}
+  {{#each images}}
+    {{> imageRow this }}
+  {{/each}}
+</template>

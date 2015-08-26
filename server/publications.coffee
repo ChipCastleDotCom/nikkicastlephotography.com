@@ -1,2 +1,5 @@
-Meteor.publish 'images', ->
-  Images.find()
+Meteor.publish 'carouselphotos', ->
+  CarouselPhotos.find()
+
+Meteor.publish 'products', ->
+  Products.find()

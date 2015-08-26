@@ -19,9 +19,12 @@ Router.map ->
       return
     @render 'logout'
     return
-  @route 'adminPanel',
+  @route 'manageCarouselPhotos',
     waitOn: ->
-      Meteor.subscribe 'images'
+      Meteor.subscribe 'carouselphotos'
+  @route 'manageProducts',
+    waitOn: ->
+      Meteor.subscribe 'products'
 
 requireLogin = () ->
   if !Meteor.userId()
@@ -30,7 +33,7 @@ requireLogin = () ->
     @next()
   return
 
-Router.onBeforeAction requireLogin, only: ['adminPanel']
+Router.onBeforeAction requireLogin, only: ['manageProducts', 'manageCarouselPhotos']
 
 Accounts.onLogin ->
-  Router.go 'adminPanel'
+  Router.go 'manageProducts'

@@ -1,0 +1,7 @@
+<template name="manageProducts">
+  <h1 id="heading">Manage Products</h1>
+  {{> quickForm collection="Products" type="insert" id="printUpload"}}
+  {{#each images}}
+    {{> imageRow this }}
+  {{/each}}
+</template>
