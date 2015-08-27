@@ -6,7 +6,7 @@ Products.allow
   remove: (userId, doc) ->
     true
 
-Photos.allow
+ProductPhotos.allow
   insert: (userId, doc) ->
     true
   update: (userId, doc, fields, modifier) ->
@@ -16,10 +16,20 @@ Photos.allow
   download: ->
     true
 
-Carousel.allow
+CarouselItems.allow
   insert: (userId, doc) ->
     true
   update: (userId, doc, fields, modifier) ->
     true
   remove: (userId, doc) ->
+    true
+
+CarouselPhotos.allow
+  insert: (userId, doc) ->
+    true
+  update: (userId, doc, fields, modifier) ->
+    true
+  remove: (userId, doc) ->
+    true
+  download: ->
     true

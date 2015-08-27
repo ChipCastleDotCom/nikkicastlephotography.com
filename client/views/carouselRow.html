@@ -1,0 +1,10 @@
+<template name="carouselRow">
+  <tr>
+    <td>{{ this.dateOfPhoto }}</td>
+    <td><img src="{{carouselPhoto this}}" store='thumbnail'></td>
+    <td>
+      <button type="button" class="button" data-id="{{this._id}}">
+        Remove</button>
+    </td>
+  </tr>
+</template>

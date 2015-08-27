@@ -4,20 +4,24 @@
       <h1 id="heading">Manage Products</h1>
       {{> quickForm collection="Products" type="insert" id="productUpload"}}
       <h2>Products</h2>
-      <table class="table">
-        <thead>
-          <th>filename</th>
-          <th>media</th>
-          <th>tags</th>
-          <th>thumbnail</th>
-          <th></th>
-        </thead>
-        <tbody>
-          {{#each products}}
-            {{> productRow this }}
-          {{/each}}
-        </tbody>
-      </table>
+      {{#if products}}
+        <table class="table">
+          <thead>
+            <th>filename</th>
+            <th>media</th>
+            <th>tags</th>
+            <th>thumbnail</th>
+            <th></th>
+          </thead>
+          <tbody>
+            {{#each products}}
+              {{> productRow this }}
+            {{/each}}
+          </tbody>
+        </table>
+      {{else}}
+        No products have been uploaded
+      {{/if}}
     </div>
   </div>
 </template>

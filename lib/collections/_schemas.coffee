@@ -20,7 +20,14 @@ createThumb = (fileObj, readStream, writeStream) ->
   gm(readStream, fileObj.name()).resize('100', '100').stream().pipe writeStream
   return
 
-@Photos = new FS.Collection 'photos', stores: [
-  new FS.Store.FileSystem 'thumbnails', transformWrite: createThumb,
-  new FS.Store.FileSystem 'photos', transformWrite: addWatermark
-]
+@ProductPhotos = new (FS.Collection)('productphotos',
+  stores: [
+    new FS.Store.FileSystem 'productThumbnails', transformWrite: createThumb
+    new FS.Store.FileSystem 'productPhotos', transformWrite: addWatermark
+  ])
+
+@CarouselPhotos = new (FS.Collection)('carouselphotos',
+  stores: [
+    new FS.Store.FileSystem 'carouselThumbnails', transformWrite: createThumb
+    new FS.Store.FileSystem 'carouselPhotos', transformWrite: addWatermark
+  ])

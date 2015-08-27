@@ -1,5 +1,9 @@
-UI.registerHelper 'photo', (row) ->
-  console.dir row
-  id = row.photo
-  photo = Photos.findOne(_id: id)
+UI.registerHelper 'productPhoto', (product) ->
+  id = product.photo
+  photo = ProductPhotos.findOne _id: id
+  photo.url() if photo
+
+UI.registerHelper 'carouselPhoto', (carouselItem) ->
+  id = carouselItem.photo
+  photo = CarouselPhotos.findOne _id: id
   photo.url() if photo

@@ -15,6 +15,6 @@ Schemas.Products = new SimpleSchema
     autoform:
       afFieldInput:
         type: 'fileUpload'
-        collection: 'Photos'
+        collection: 'ProductPhotos'
 
 Products.attachSchema(Schemas.Products)

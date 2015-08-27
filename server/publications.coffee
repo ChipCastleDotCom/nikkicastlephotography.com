@@ -1,8 +1,11 @@
-Meteor.publish 'carousel', ->
-  Carousel.find()
-
 Meteor.publish 'products', ->
   Products.find()
 
-Meteor.publish 'photos', ->
-  Photos.find()
+Meteor.publish 'productphotos', ->
+  ProductPhotos.find()
+
+Meteor.publish 'carouselitems', ->
+  CarouselItems.find()
+
+Meteor.publish 'carouselphotos', ->
+  CarouselPhotos.find()
