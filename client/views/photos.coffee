@@ -1,6 +1,6 @@
 Template.photos.helpers
   images: ->
-    Images.find()
+    Products.find()
 
 Template.photos.onRendered ->
   $.backstretch 'destroy', false

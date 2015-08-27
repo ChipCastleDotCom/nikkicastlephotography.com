@@ -1,0 +1,12 @@
+<template name="productRow">
+  <tr>
+    <td>{{ this.filename }}</td>
+    <td>{{ this.media }}</td>
+    <td>{{ this.tags }}</td>
+    <td><img src="{{photo this}}" store='thumbnail'></td>
+    <td>
+      <button type="button" class="button" data-id="{{this._id}}">
+        Remove</button>
+    </td>
+  </tr>
+</template>

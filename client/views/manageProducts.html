@@ -1,7 +1,23 @@
 <template name="manageProducts">
-  <h1 id="heading">Manage Products</h1>
-  {{> quickForm collection="Products" type="insert" id="printUpload"}}
-  {{#each images}}
-    {{> imageRow this }}
-  {{/each}}
+  <div class="row image">
+    <div class="col-md-8">
+      <h1 id="heading">Manage Products</h1>
+      {{> quickForm collection="Products" type="insert" id="productUpload"}}
+      <h2>Products</h2>
+      <table class="table">
+        <thead>
+          <th>filename</th>
+          <th>media</th>
+          <th>tags</th>
+          <th>thumbnail</th>
+          <th></th>
+        </thead>
+        <tbody>
+          {{#each products}}
+            {{> productRow this }}
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
 </template>

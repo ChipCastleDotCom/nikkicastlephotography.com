@@ -1,25 +1,25 @@
-Images.allow
-  insert: (userId, project) ->
+Products.allow
+  insert: (userId, doc) ->
     true
-  update: (userId, project, fields, modifier) ->
+  update: (userId, doc, fields, modifier) ->
     true
-  remove: (userId, project) ->
+  remove: (userId, doc) ->
+    true
+
+Photos.allow
+  insert: (userId, doc) ->
+    true
+  update: (userId, doc, fields, modifier) ->
+    true
+  remove: (userId, doc) ->
     true
   download: ->
     true
 
-Products.allow
-  insert: (userId, project) ->
+Carousel.allow
+  insert: (userId, doc) ->
     true
-  update: (userId, project, fields, modifier) ->
+  update: (userId, doc, fields, modifier) ->
     true
-  remove: (userId, project) ->
-    true
-
-CarouselPhotos.allow
-  insert: (userId, project) ->
-    true
-  update: (userId, project, fields, modifier) ->
-    true
-  remove: (userId, project) ->
+  remove: (userId, doc) ->
     true

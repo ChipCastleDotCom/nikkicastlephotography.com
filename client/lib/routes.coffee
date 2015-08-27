@@ -8,7 +8,7 @@ Router.map ->
   @route 'about'
   @route 'photos',
     waitOn: ->
-      Meteor.subscribe 'images'
+      Meteor.subscribe 'products'
   @route 'contact'
   @route 'login'
   @route 'logout', ->
@@ -21,10 +21,13 @@ Router.map ->
     return
   @route 'manageCarouselPhotos',
     waitOn: ->
-      Meteor.subscribe 'carouselphotos'
+      Meteor.subscribe 'carousel'
   @route 'manageProducts',
     waitOn: ->
-      Meteor.subscribe 'products'
+      [
+        Meteor.subscribe 'products'
+        Meteor.subscribe 'photos'
+      ]
 
 requireLogin = () ->
   if !Meteor.userId()

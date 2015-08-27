@@ -1,6 +1,6 @@
 @Products = new Meteor.Collection 'products'
 
-Schemas.Prodcuts = new SimpleSchema
+Schemas.Products = new SimpleSchema
   filename:
     type: String
   media:
@@ -9,12 +9,12 @@ Schemas.Prodcuts = new SimpleSchema
     allowedValues: ['print', 'canvas']
   tags:
     type: String
-  picture:
+  photo:
     type: String
     label: 'Choose file'
     autoform:
       afFieldInput:
         type: 'fileUpload'
-        collection: 'Images'
+        collection: 'Photos'
 
 Products.attachSchema(Schemas.Products)
