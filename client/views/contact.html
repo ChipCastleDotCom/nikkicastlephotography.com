@@ -1,0 +1,10 @@
+<template name="contact">
+  <div class="container">
+    <div class="row">
+       <div class="col-md-8">
+         <h1 class="heading">CONTACT NIKKI</h1>
+         {{> quickForm schema=contactFormSchema id="contact" type="method" meteormethod="sendEmail" }}
+       </div>
+    </div>
+  </div>
+</template>

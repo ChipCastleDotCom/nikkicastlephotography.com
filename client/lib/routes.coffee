@@ -10,6 +10,7 @@ Router.map ->
     waitOn: ->
       Meteor.subscribe 'products'
   @route 'contact'
+  @route 'thankYou'
   @route 'login'
   @route 'logout', ->
     Meteor.logout (err) ->
