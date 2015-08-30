@@ -11,6 +11,8 @@ Router.map ->
       Meteor.subscribe 'products'
   @route 'contact'
   @route 'thankYou'
+  @route 'success'
+  @route 'cancel'
   @route 'login'
   @route 'logout', ->
     Meteor.logout (err) ->
