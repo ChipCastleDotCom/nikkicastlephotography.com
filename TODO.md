@@ -1,3 +1,6 @@
+TODO Get Nikki's Paypal
+TODO Update email address for production
+TODO Setup dev and production env (email, paypal, sandbox)
 TODO Redo logo
 TODO Review http://www.ashleynicholephoto.com/
 TODO Slideshow http://photoswipe.com/documentation/getting-started.html
