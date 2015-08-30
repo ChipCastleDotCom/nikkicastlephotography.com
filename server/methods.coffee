@@ -10,7 +10,7 @@ Meteor.methods sendEmail: (doc) ->
   @unblock()
 
   Email.send
-    to: 'chip@chipcastle.com'
+    to: Meteor.settings.public.email
     from: doc.email
     subject: 'Nikki Castle Photography Contact Form - Message From ' + doc.name
     text: text
