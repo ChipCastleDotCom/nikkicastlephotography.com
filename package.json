@@ -1,6 +1,6 @@
 {
   "name": "nikkicastlephotography.com",
   "scripts": {
-    "start": "meteor --settings settings.json --port 5000"
+    "start": "meteor --settings environments/development/settings.json --port 5000"
   }
 }
