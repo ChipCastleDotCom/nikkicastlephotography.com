@@ -11,3 +11,16 @@ UI.registerHelper 'carouselPhoto', (carouselItem, thumbnail) ->
   if photo
     store = if thumbnail.hash.thumb then 'carouselthumbnails' else 'carouselphotos'
     photo.url(store: store)
+
+UI.registerHelper 'addIndex', (all) ->
+  _.map all, (val, index) ->
+    {
+      index: index
+      value: val
+    }
+
+UI.registerHelper 'firstIndex', (index) ->
+  index == 0
+
+UI.registerHelper 'cssClass', (index) ->
+  if index == 0 then 'active' else ''
