@@ -1,0 +1,32 @@
+<template name="prints">
+  <h1 id="heading">PRINTS FOR PURCHASE</h1>
+  {{#each products}}
+    <div class="row">
+      <div class="col-md-4">
+        <img src="{{productPhoto this}}" store='productPhotos'>
+        <h2 class="item_name">{{ description }}</h2>
+      </div>
+      <div class="col-md-8">
+        <div class="simpleCart_shelfItem">
+          <p><input type="text" value="1" class="item_Quantity"><br>
+          <span class="item_price">$35.99</span><br>
+          <a class="item_add">Add to Cart</a></p>
+        </div>
+      </div>
+    </div>
+  {{/each}}
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="simpleCart_items"></div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <span class="simpleCart_quantity"></span> items -
+      <span class="simpleCart_total"></span>
+      <a class="simpleCart_checkout">Checkout</a>
+    </div>
+  </div>
+</template>

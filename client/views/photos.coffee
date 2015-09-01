@@ -1,6 +1,6 @@
 Template.photos.helpers
   images: ->
-    Products.find()
+    CarouselItems.find()
 
 Template.photos.onRendered ->
   $.backstretch 'destroy', false

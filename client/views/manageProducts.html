@@ -3,11 +3,14 @@
     <div class="col-md-8">
       <h1 id="heading">Manage Products</h1>
       {{> quickForm collection="Products" type="insert" id="productUpload"}}
-      <h2>Products</h2>
+
+      <br/>
+      <h1>Products</h1>
       {{#if products}}
-        <table class="table">
+        <table class="table table-bordered">
           <thead>
             <th>filename</th>
+            <th>description</th>
             <th>media</th>
             <th>tags</th>
             <th>thumbnail</th>
