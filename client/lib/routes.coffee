@@ -11,6 +11,7 @@ Router.map ->
       [
         Meteor.subscribe 'products'
         Meteor.subscribe 'productphotos'
+        Meteor.subscribe 'prices'
       ]
   @route 'photos',
     waitOn: ->
