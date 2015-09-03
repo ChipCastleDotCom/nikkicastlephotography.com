@@ -24,3 +24,11 @@ UI.registerHelper 'firstIndex', (index) ->
 
 UI.registerHelper 'cssClass', (index) ->
   if index == 0 then 'active' else ''
+
+UI.registerHelper 'priceFor', (media) ->
+  price = Prices.findOne({media: media})
+  numeral(price.amount).format('$0,0.00')
+
+UI.registerHelper 'sizeFor', (media) ->
+  price = Prices.findOne({media: media})
+  price.size
