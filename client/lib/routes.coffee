@@ -23,7 +23,6 @@ Router.map ->
   @route 'thankYou'
   @route 'success'
   @route 'cancel'
-  @route 'login'
   @route 'logout', ->
     Meteor.logout (err) ->
       if err
