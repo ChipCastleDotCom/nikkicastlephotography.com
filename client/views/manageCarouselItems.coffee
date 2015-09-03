@@ -1,3 +1,6 @@
+Template.manageCarouselItems.onRendered ->
+  $.backstretch 'destroy', false
+
 Template.manageCarouselItems.helpers
   items: ->
     CarouselItems.find()

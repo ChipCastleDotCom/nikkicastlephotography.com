@@ -1,3 +1,6 @@
+Template.manageProducts.onRendered ->
+  $.backstretch 'destroy', false
+
 Template.manageProducts.helpers
   products: ->
     Products.find()
