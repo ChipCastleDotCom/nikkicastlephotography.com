@@ -2,7 +2,7 @@ simpleCart
   checkout:
     type: 'PayPal'
     email: Meteor.settings.public.paypalEmail
-    sandbox: true
+    sandbox: Meteor.settings.public.paypalSandbox
     success: 'success'
     cancel: 'cancel'
   cartColumns: [
