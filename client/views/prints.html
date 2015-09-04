@@ -1,17 +1,33 @@
 <template name="prints">
   <h1 id="heading">PRINTS FOR PURCHASE</h1>
-  {{#each products}}
-    <a href="#" data-toggle="modal" data-target="#{{this._id}}">
-      <img width="300" src="{{productPhoto this thumb=false}}">
-    </a>
-    {{> _modal this }}
-  {{/each}}
-
   <div class="row">
     <div class="col-md-12">
-      <span class="simpleCart_quantity"></span> items -
+      Your cart: <span class="simpleCart_quantity"></span> items -
       <span class="simpleCart_total"></span>
       <a class="simpleCart_checkout">Checkout</a>
+      * Other size options are available during checkout
     </div>
+  </div>
+  <div class="row">
+    {{#each products}}
+      <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+          <a href="#" class="grid-item" data-toggle="modal"
+            data-target="#{{this._id}}">
+            <img width="300" src="{{productPhoto this thumb=false}}">
+          </a>
+          {{> _modal this }}
+          <div class="caption text-center">
+            <h3>{{description}}</h3>
+            <span class="simpleCart_shelfItem">
+              <a class="btn btn-danger item_add" role="button">Purchase
+                {{sizeFor 'print'}} size for
+                <span class="item_price">{{priceFor 'print'}}*</span>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
+    {{/each}}
   </div>
 </template>
