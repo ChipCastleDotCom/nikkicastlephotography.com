@@ -18,13 +18,46 @@
           </a>
           {{> _modal this }}
           <div class="caption text-center">
-            <h3>{{description}}</h3>
-            <span class="simpleCart_shelfItem">
-              <a class="btn btn-danger item_add" role="button">Purchase
-                {{sizeFor 'print'}} size for
-                <span class="item_price">{{priceFor 'print'}}*</span>
-              </a>
-            </span>
+            <h2>{{description}}</h2>
+            <p><h4>Media: {{media}}</h4></p>
+
+            <p>
+              <span class="simpleCart_shelfItem">
+                <p><h4>Filename: <span class="item_name">
+                    {{filename}}</span></h4></p>
+                <p><h4>Quantity: <span
+                    class="item_quantity">1</span></h4></p>
+                {{#if sizesMenuFor media}}
+                  <p>
+                    <h4>
+                      Size:
+                      <select class="item_size">
+                        {{#each sizesMenuFor media}}
+                          <option value={{this.size}}>{{this.size}}</option>
+                        {{/each}}
+                      </select>
+                    </h4>
+                  </p>
+                {{/if}}
+                {{#if thicknessMenuFor media}}
+                  <p>
+                    <h4>
+                      Thickness:
+                      <select class="item_thickness">
+                        {{#each thicknessMenuFor media}}
+                          <option
+                          value={{this.thickness}}>{{this.thickness}}</option>
+                        {{/each}}
+                      </select>
+                    </h4>
+                  </p>
+                {{/if}}
+                <a class="btn btn-danger item_add" role="button">Purchase
+                  for
+                  <span class="item_price">{{priceFor media}} *</span>
+                </a>
+              </span>
+            </p>
           </div>
         </div>
       </div>

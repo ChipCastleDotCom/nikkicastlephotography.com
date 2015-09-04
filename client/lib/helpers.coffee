@@ -32,3 +32,11 @@ UI.registerHelper 'priceFor', (media) ->
 UI.registerHelper 'sizeFor', (media) ->
   price = Prices.findOne({media: media})
   price.size
+
+UI.registerHelper 'sizesMenuFor', (media) ->
+  return if media not in ['print', 'canvas']
+  Prices.find({media: media}, {_id: 0, size: 1}).fetch()
+
+UI.registerHelper 'thicknessMenuFor', (media) ->
+  return if media != 'canvas'
+  Prices.find({media: 'canvas'}, {_id: 0, thickness: 1}).fetch()
