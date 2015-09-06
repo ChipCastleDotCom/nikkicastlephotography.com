@@ -27,26 +27,26 @@
                     {{filename}}</span></h4></p>
                 <p><h4>Quantity: <span
                     class="item_quantity">1</span></h4></p>
-                {{#if sizesMenuFor media}}
+                {{#if sizesFor media}}
                   <p>
                     <h4>
                       Size:
                       <select class="item_size">
-                        {{#each sizesMenuFor media}}
-                          <option value={{this.size}}>{{this.size}}</option>
+                        {{#each sizesFor media}}
+                          <option value={{this}}>{{this}}</option>
                         {{/each}}
                       </select>
                     </h4>
                   </p>
                 {{/if}}
-                {{#if thicknessMenuFor media}}
+                {{#if thicknessFor media}}
                   <p>
                     <h4>
                       Thickness:
                       <select class="item_thickness">
-                        {{#each thicknessMenuFor media}}
+                        {{#each thicknessFor media}}
                           <option
-                          value={{this.thickness}}>{{this.thickness}}</option>
+                          value={{this}}>{{this}}</option>
                         {{/each}}
                       </select>
                     </h4>

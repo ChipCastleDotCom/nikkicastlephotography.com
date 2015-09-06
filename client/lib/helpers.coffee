@@ -26,17 +26,11 @@ UI.registerHelper 'cssClass', (index) ->
   if index == 0 then 'active' else ''
 
 UI.registerHelper 'priceFor', (media) ->
-  price = Prices.findOne({media: media})
-  numeral(price.amount).format('$0,0.00')
+  product = NikkiApp.productService(media: media)
+  numeral(product.amount()).format('$0,0.00')
 
-UI.registerHelper 'sizeFor', (media) ->
-  price = Prices.findOne({media: media})
-  price.size
+UI.registerHelper 'sizesFor', (media) ->
+  NikkiApp.productService(media: media).sizes()
 
-UI.registerHelper 'sizesMenuFor', (media) ->
-  return if media not in ['print', 'canvas']
-  Prices.find({media: media}, {_id: 0, size: 1}).fetch()
-
-UI.registerHelper 'thicknessMenuFor', (media) ->
-  return if media != 'canvas'
-  Prices.find({media: 'canvas'}, {_id: 0, thickness: 1}).fetch()
+UI.registerHelper 'thicknessFor', (media) ->
+  NikkiApp.productService(media: media).thicknesses()
