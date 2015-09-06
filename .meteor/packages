@@ -27,3 +27,5 @@ yogiben:autoform-file
 cfs:graphicsmagick
 email
 numeral:numeral
+sanjo:jasmine
+velocity:html-reporter
