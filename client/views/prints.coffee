@@ -2,6 +2,14 @@ Template.prints.helpers
   products: ->
     Products.find()
 
+Template.prints.events
+  'change .item_thickness': (event) ->
+    console.log 'item_thickness change'
+
+  'change .item_size': (event) ->
+    $ele = event.currentTarget
+    console.log 'item_size change ', $ele
+
 Template.prints.onRendered ->
   $.backstretch 'destroy', false
 
@@ -17,3 +25,4 @@ Template.prints.onRendered ->
   simpleCart.bind 'beforeCheckout', (data) ->
     console.log 'beforeCheckout'
     console.dir data
+    return
