@@ -9,6 +9,3 @@ Meteor.publish 'carouselitems', ->
 
 Meteor.publish 'carouselphotos', ->
   CarouselPhotos.find()
-
-Meteor.publish 'prices', ->
-  Prices.find()
