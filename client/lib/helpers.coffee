@@ -25,9 +25,17 @@ UI.registerHelper 'firstIndex', (index) ->
 UI.registerHelper 'cssClass', (index) ->
   if index == 0 then 'active' else ''
 
-UI.registerHelper 'priceFor', (media) ->
-  product = NikkiApp.productService(media: media)
-  numeral(product.amount()).format('$0,0.00')
+UI.registerHelper 'priceFor', (product) ->
+  #console.log 'priceFor '
+  #console.dir product
+  $ele = $('.' + product._id)
+  media = product.media
+  size = $ele.find('.item_size').val() or ''
+  #console.log 'size: ', size
+  quantity = $ele.find('.item_quantity').html() or '3'
+  #console.log 'quantity: ', quantity
+  product = NikkiApp.productService media: media, size: size
+  numeral(product.amount() * quantity).format('$0,0.00')
 
 UI.registerHelper 'sizesFor', (media) ->
   NikkiApp.productService(media: media).sizes()

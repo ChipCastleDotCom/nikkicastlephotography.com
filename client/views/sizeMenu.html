@@ -1,0 +1,7 @@
+<template name="sizeMenu">
+  <select class="item_size" data-size-trigger="{{_id}}">
+    {{#each sizesFor media}}
+      <option value={{this}}>{{this}}</option>
+    {{/each}}
+  </select>
+</template>

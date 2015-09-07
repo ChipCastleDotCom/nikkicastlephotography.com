@@ -1,63 +1,52 @@
 <template name="prints">
   <h1 id="heading">PRINTS FOR PURCHASE</h1>
   <div class="row">
-    <div class="col-md-12">
-      Your cart: <span class="simpleCart_quantity"></span> items -
-      <span class="simpleCart_total"></span>
-      <a class="simpleCart_checkout">Checkout</a>
-      * Other size options are available during checkout
+    <div class="col-md-offset-8 col-md-4 text-right">
+      <p>
+        Your cart: <span class="simpleCart_quantity"></span> items -
+        <span class="simpleCart_total"></span>
+      </p>
+      <p>
+        <a class="simpleCart_checkout btn btn-danger">Checkout</a>
+      </p>
     </div>
   </div>
   <div class="row">
     {{#each products}}
       <div class="col-sm-6 col-md-4">
         <div class="thumbnail">
-          <a href="#" class="grid-item" data-toggle="modal"
-            data-target="#{{this._id}}">
+          <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
             <img width="300" src="{{productPhoto this thumb=false}}">
           </a>
           {{> _modal this }}
           <div class="caption text-center">
             <h2>{{description}}</h2>
-            <p><h4>Media: {{media}}</h4></p>
 
-            <p>
-              <span class="simpleCart_shelfItem">
-                <p><h4>Filename: <span class="item_name">
-                    {{filename}}</span></h4></p>
-                <p><h4>Quantity: <span
-                    class="item_quantity">1</span></h4></p>
-                {{#if sizesFor media}}
-                  <p>
-                    <h4>
-                      Size:
-                      <select class="item_size">
-                        {{#each sizesFor media}}
-                          <option value={{this}}>{{this}}</option>
-                        {{/each}}
-                      </select>
-                    </h4>
-                  </p>
-                {{/if}}
-                {{#if thicknessFor media}}
-                  <p>
-                    <h4>
-                      Thickness:
-                      <select class="item_thickness">
-                        {{#each thicknessFor media}}
-                          <option
-                          value={{this}}>{{this}}</option>
-                        {{/each}}
-                      </select>
-                    </h4>
-                  </p>
-                {{/if}}
-                <a class="btn btn-danger item_add" role="button">Purchase
-                  for
-                  <span class="item_price">{{priceFor media}} *</span>
-                </a>
-              </span>
-            </p>
+            <span class="simpleCart_shelfItem {{_id}}">
+              <p><h4>Media: <span class="item_media">{{media}}</span></h4></p>
+              <p><h4>Filename: <span class="item_name">
+                  {{filename}}</span></h4></p>
+              <p><h4>Quantity: <span class="item_quantity">1</span></h4></p>
+              {{#if sizesFor media}}
+                <p><h4>Size: {{> sizeMenu this}}</h4></p>
+              {{/if}}
+              {{#if thicknessFor media}}
+                <p>
+                  <h4>
+                    Thickness:
+                    <select class="item_thickness">
+                      {{#each thicknessFor media}}
+                        <option value={{this}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </h4>
+                </p>
+              {{/if}}
+              <a class="btn btn-success item_add" role="button">Purchase
+                for <span class="item_price">{{priceFor this}}</span>
+              </a>
+              Price: {{> price this}}
+            </span>
           </div>
         </div>
       </div>
