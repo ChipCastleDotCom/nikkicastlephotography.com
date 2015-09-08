@@ -12,8 +12,6 @@ Schemas.Products = new SimpleSchema
     type: String
   description:
     type: String
-  tags:
-    type: String
   media:
     type: String
     defaultValue: 'print'

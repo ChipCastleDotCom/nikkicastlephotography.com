@@ -1,0 +1,17 @@
+.caption {
+  padding: 0 !important;
+}
+
+.product-info {
+  padding: 5px 0;
+  background-color: #eee;
+}
+
+.form-bg {
+  padding: 5px 0 10px 0;
+  background-color: #eec;
+}
+
+.btn-success {
+  margin-top: 10px;
+}

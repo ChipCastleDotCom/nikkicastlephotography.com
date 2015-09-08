@@ -7,33 +7,25 @@
       {{> _modal this }}
       <div class="caption text-center">
         <h2>{{description}}</h2>
+        <div class="product-info">
+          <h4 class="text-muted"><span class="item_name">{{filename}}</span></h4>
+          <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
+        </div>
+        <div class="form-bg">
+          <span class="simpleCart_shelfItem">
+            <form>
+              {{> quantity this}}
 
-        <span class="simpleCart_shelfItem">
-          <form class="form-inline">
-            <div class="form-group">
-              Quantity: {{> quantity this}}
-            </div>
-            {{#if sizesFor media}}
-              <div class="form-group">
-                Size: {{> sizeMenu this}}
-              </div>
-            {{/if}}
-            {{#if thicknessFor media}}
-              <div class="form-group">
-                Thickness:
-                <select class="form-control item_thickness">
-                  {{#each thicknessFor media}}
-                    <option value={{this}}>{{this}}</option>
-                  {{/each}}
-                </select>
-              </div>
-            {{/if}}
-            <p>
-              Price: <span class="item_price">{{priceFor this}}</span>
+              {{#if sizesFor media}}
+                {{> sizeMenu this}}
+              {{/if}}
+              {{#if thicknessFor media}}
+                {{> thicknessMenu}}
+              {{/if}}
               <a class="btn btn-success item_add" role="button">Purchase for {{> price this}}</a>
-            </p>
-          </form>
-        </span>
+            </form>
+          </span>
+        </div>
       </div>
     </div>
   </div>

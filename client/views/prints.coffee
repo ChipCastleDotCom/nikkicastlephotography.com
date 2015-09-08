@@ -7,7 +7,7 @@ Template.prints.helpers
 Template.prints.onRendered ->
 
   simpleCart.bind 'update', ->
-    console.log 'Whoa, the cart total is now at ' + simpleCart.toCurrency(simpleCart.grandTotal()) + '! Nice!'
+    console.log simpleCart.grandTotal()
     return
 
   simpleCart.bind 'beforeAdd', (item) ->
