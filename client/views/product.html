@@ -7,12 +7,12 @@
       {{> _modal this }}
       <div class="caption text-center">
         <h2>{{description}}</h2>
-        <div class="product-info">
-          <h4 class="text-muted"><span class="item_name">{{filename}}</span></h4>
-          <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
-        </div>
         <div class="form-bg">
           <span class="simpleCart_shelfItem">
+            <div class="product-info">
+              <h4 class="text-muted"><span class="item_name">{{filename}}</span></h4>
+              <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
+            </div>
             <form>
               {{> quantity this}}
 
