@@ -2,7 +2,11 @@
   <div class="row image">
     <div class="col-md-8">
       <h1 id="heading">Manage Carousel Photos</h1>
-      {{> quickForm collection="CarouselItems" type="insert" id="carouselUpload"}}
+      {{#autoForm collection="CarouselItems" doc=this type="insert" id="carouselUpload"}}
+        {{> afQuickField name="dateOfPhoto"}}
+        {{> afQuickField name="photo"}}
+        <button type="submit" class="btn btn-primary">Save Carousel Photo</button>
+      {{/autoForm}}
       <br/>
       <h1>Carousel Photos</h1>
       <table class="table table-striped table-bordered">
