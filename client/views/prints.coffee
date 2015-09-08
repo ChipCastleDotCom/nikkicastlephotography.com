@@ -6,4 +6,4 @@ Template.prints.helpers
 
 Template.prints.onRendered ->
   $.backstretch 'destroy', false
-  simpleCart.load()
+  simpleCart.update()
