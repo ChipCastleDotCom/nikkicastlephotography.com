@@ -16,5 +16,8 @@ Schemas.Products = new SimpleSchema
     type: String
     defaultValue: 'print'
     allowedValues: ['print', 'canvas', 'postcard', 'bookmark']
+  dateOfPhoto:
+    type: Date
+    defaultValue: new Date()
 
 Products.attachSchema(Schemas.Products)

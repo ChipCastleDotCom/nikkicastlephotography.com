@@ -3,7 +3,6 @@
     <div class="col-md-8">
       <h1 id="heading">Manage Products</h1>
       {{> quickForm collection="Products" type="insert" id="productUpload"}}
-
       <br/>
       <h1>Products</h1>
       {{#if products}}
@@ -14,6 +13,7 @@
               <th>Description</th>
               <th>Media</th>
               <th>Thumbnail</th>
+              <th>Date taken</th>
               <th>Action</th>
             </tr>
           </thead>
