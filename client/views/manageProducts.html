@@ -7,13 +7,15 @@
       <br/>
       <h1>Products</h1>
       {{#if products}}
-        <table class="table table-bordered">
+        <table class="table table-striped table-bordered">
           <thead>
-            <th>filename</th>
-            <th>description</th>
-            <th>media</th>
-            <th>thumbnail</th>
-            <th></th>
+            <tr>
+              <th>Filename</th>
+              <th>Description</th>
+              <th>Media</th>
+              <th>Thumbnail</th>
+              <th>Action</th>
+            </tr>
           </thead>
           <tbody>
             {{#each products}}
