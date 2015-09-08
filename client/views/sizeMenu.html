@@ -1,0 +1,12 @@
+<template name="sizeMenu">
+  <div class="form-group form-input-xs">
+    <label class="col-xs-offset-1 col-xs-5 control-label text-right">Size</label>
+    <div class="col-xs-6">
+      <select class="form-control input-sm item_size" data-size-trigger="{{_id}}">
+        {{#each sizesFor media}}
+          <option value={{this}}>{{this}}</option>
+        {{/each}}
+      </select>
+    </div>
+  </div>
+</template>

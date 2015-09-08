@@ -6,9 +6,18 @@ Router.map ->
   @route 'home',
     path: '/'
   @route 'about'
+  @route 'prints',
+    waitOn: ->
+      [
+        Meteor.subscribe 'products'
+        Meteor.subscribe 'productphotos'
+      ]
   @route 'photos',
     waitOn: ->
-      Meteor.subscribe 'products'
+      [
+        Meteor.subscribe 'carouselitems'
+        Meteor.subscribe 'carouselphotos'
+      ]
   @route 'contact'
   @route 'thankYou'
   @route 'success'
@@ -20,7 +29,7 @@ Router.map ->
         console.log 'Error logging out'
       Router.go '/'
       return
-    @render 'logout'
+    @next
     return
   @route 'manageCarouselItems',
     waitOn: ->

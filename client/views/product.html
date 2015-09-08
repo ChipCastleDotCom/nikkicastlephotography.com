@@ -1,0 +1,32 @@
+<template name="product">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
+        <img width="300" src="{{productPhoto this thumb=false}}">
+      </a>
+      {{> _modal this }}
+      <div class="caption text-center">
+        <h2>{{description}}</h2>
+        <div class="product-info">
+          <h4 class="text-muted"><span class="item_name">{{filename}}</span></h4>
+          <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
+        </div>
+        <div class="form-bg">
+          <span class="simpleCart_shelfItem">
+            <form>
+              {{> quantity this}}
+
+              {{#if sizesFor media}}
+                {{> sizeMenu this}}
+              {{/if}}
+              {{#if thicknessFor media}}
+                {{> thicknessMenu}}
+              {{/if}}
+              <a class="btn btn-success item_add" role="button">Purchase for {{> price this}}</a>
+            </form>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

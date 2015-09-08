@@ -22,12 +22,12 @@ createThumb = (fileObj, readStream, writeStream) ->
 
 @ProductPhotos = new (FS.Collection)('productphotos',
   stores: [
-    new FS.Store.FileSystem 'productThumbnails', transformWrite: createThumb
-    new FS.Store.FileSystem 'productPhotos', transformWrite: addWatermark
+    new (FS.Store.FileSystem)('productphotos', transformWrite: addWatermark),
+    new (FS.Store.FileSystem)('productthumbnails', transformWrite: createThumb)
   ])
 
 @CarouselPhotos = new (FS.Collection)('carouselphotos',
   stores: [
-    new FS.Store.FileSystem 'carouselThumbnails', transformWrite: createThumb
-    new FS.Store.FileSystem 'carouselPhotos', transformWrite: addWatermark
+    new (FS.Store.FileSystem)('carouselphotos', transformWrite: addWatermark),
+    new (FS.Store.FileSystem)('carouselthumbnails', transformWrite: createThumb)
   ])

@@ -1,0 +1,20 @@
+<template name="prints">
+  <h1 id="heading">PRINTS FOR PURCHASE</h1>
+  <div class="row">
+    <div class="col-md-offset-8 col-md-4 text-right">
+      <p>
+        Your cart: <span class="simpleCart_quantity"></span>
+        <div class="simpleCart_items"></div>
+        <span class="simpleCart_total"></span>
+      </p>
+      <p>
+        <a class="simpleCart_checkout btn btn-danger">Checkout</a>
+      </p>
+    </div>
+  </div>
+  <div class="row">
+    {{#each products}}
+      {{> product this}}
+    {{/each}}
+  </div>
+</template>
