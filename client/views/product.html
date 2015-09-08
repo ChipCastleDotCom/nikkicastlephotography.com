@@ -1,0 +1,40 @@
+<template name="product">
+  <div class="col-sm-6 col-md-4">
+    <div class="thumbnail">
+      <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
+        <img width="300" src="{{productPhoto this thumb=false}}">
+      </a>
+      {{> _modal this }}
+      <div class="caption text-center">
+        <h2>{{description}}</h2>
+
+        <span class="simpleCart_shelfItem">
+          <form class="form-inline">
+            <div class="form-group">
+              Quantity: {{> quantity this}}
+            </div>
+            {{#if sizesFor media}}
+              <div class="form-group">
+                Size: {{> sizeMenu this}}
+              </div>
+            {{/if}}
+            {{#if thicknessFor media}}
+              <div class="form-group">
+                Thickness:
+                <select class="form-control item_thickness">
+                  {{#each thicknessFor media}}
+                    <option value={{this}}>{{this}}</option>
+                  {{/each}}
+                </select>
+              </div>
+            {{/if}}
+            <p>
+              Price: <span class="item_price">{{priceFor this}}</span>
+              <a class="btn btn-success item_add" role="button">Purchase for {{> price this}}</a>
+            </p>
+          </form>
+        </span>
+      </div>
+    </div>
+  </div>
+</template>

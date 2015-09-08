@@ -1,10 +1,5 @@
-Template.price.onCreated ->
-  console.log 'price onCreated'
-  console.dir @data
-  menu = NikkiApp.products.get @data._id
-
 Template.price.helpers
   price: ->
     menu = NikkiApp.products.get @._id
-    product = NikkiApp.productService media: menu.media, size: menu.size
-    product.amount()
+    service = NikkiApp.productService media: menu.media, size: menu.size
+    numeral(service.amount() * menu.quantity).format('$0,0.00')

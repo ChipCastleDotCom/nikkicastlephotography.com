@@ -13,43 +13,7 @@
   </div>
   <div class="row">
     {{#each products}}
-      <div class="col-sm-6 col-md-4">
-        <div class="thumbnail">
-          <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
-            <img width="300" src="{{productPhoto this thumb=false}}">
-          </a>
-          {{> _modal this }}
-          <div class="caption text-center">
-            <h2>{{description}}</h2>
-
-            <span class="simpleCart_shelfItem {{_id}}">
-              <p><h4>Media: <span class="item_media">{{media}}</span></h4></p>
-              <p><h4>Filename: <span class="item_name">
-                  {{filename}}</span></h4></p>
-              <p><h4>Quantity: <span class="item_quantity">1</span></h4></p>
-              {{#if sizesFor media}}
-                <p><h4>Size: {{> sizeMenu this}}</h4></p>
-              {{/if}}
-              {{#if thicknessFor media}}
-                <p>
-                  <h4>
-                    Thickness:
-                    <select class="item_thickness">
-                      {{#each thicknessFor media}}
-                        <option value={{this}}>{{this}}</option>
-                      {{/each}}
-                    </select>
-                  </h4>
-                </p>
-              {{/if}}
-              <a class="btn btn-success item_add" role="button">Purchase
-                for <span class="item_price">{{priceFor this}}</span>
-              </a>
-              Price: {{> price this}}
-            </span>
-          </div>
-        </div>
-      </div>
+      {{> product this}}
     {{/each}}
   </div>
 </template>
