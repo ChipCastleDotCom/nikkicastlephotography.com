@@ -9,6 +9,8 @@ Template.product.onCreated ->
 
   @currentProduct = new ReactiveVar media: media, quantity: quantity, size: size
   @hasSizes = new ReactiveVar _.contains ['print', 'canvas'], media
+  menuOptions = NikkiApp.productService(media: media).sizes()
+  @sizes = new ReactiveVar menuOptions
   #sizes = NikkiApp.productService(media: product.media).sizes()
   #sizes.length > 0
 
@@ -30,7 +32,16 @@ Template.product.onCreated ->
 
 Template.product.helpers
   hasSizes: ->
-    Template.instance.hasSizes().get()
+    console.log 'product.helpers hasSizes'
+    value = Template.instance().hasSizes.get()
+    console.log 'hasSizes ', value
+    value
+
+  sizes: ->
+    console.log 'product.helpers sizes'
+    value = Template.instance().sizes.get()
+    console.log 'sizes ', value
+    value
 
 Template.product.events
   'change': (evt, template) ->
@@ -58,12 +69,26 @@ Template.product.events
       #product = NikkiApp.products.get id
       product = template.currentProduct.get()
       #hasSizes = template.hasSizes.get()
-      #console.dir product
+      console.dir product
       newOptions = _.extend product, options
-      template.currentProduct.set newOptions
-      template.hasSizes.set true
-      #console.log 'before NikkiApp.products.set %s', id
       console.log 'newOptions'
       console.dir newOptions
+      template.currentProduct.set newOptions
+      value = _.contains ['print', 'canvas'], product.media
+      template.hasSizes.set value
+      console.log 'after template.hasSizes.set ', value
+      menuOptions = NikkiApp.productService(media: product.media).sizes()
+      template.sizes.set menuOptions
+      #console.log 'before NikkiApp.products.set %s', id
       #NikkiApp.products.set id, newOptions
       #console.log 'after NikkiApp.products.set %s', id
+
+  'keyup .item_quantity': (evt, template) ->
+    id = $(evt.currentTarget).data 'quantity-trigger'
+    console.log 'keyup .item_quantity id ', id
+    quantity = $(evt.currentTarget).val()
+    console.log 'quantity ', quantity
+    product = template.currentProduct.get()
+    opts = _.extend product, quantity: quantity
+    console.dir opts
+    NikkiApp.products.set id, opts

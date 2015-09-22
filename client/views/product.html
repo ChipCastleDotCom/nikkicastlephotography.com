@@ -19,13 +19,13 @@
               {{/if}}
 
               {{#if hasSizes}}
+                {{this.media}}
+                {{media}}
                 <div class="form-group form-input-xs">
                   <label class="col-xs-offset-1 col-xs-5 control-label text-right">Size</label>
                   <div class="col-xs-6">
-                    {{this.media}}
-                    {{media}}
                     <select class="form-control input-sm item-size" data-size-trigger="{{_id}}">
-                      {{#each sizesFor this}}
+                      {{#each sizes this}}
                         <option value={{this}}>{{this}}</option>
                       {{/each}}
                     </select>
