@@ -1,3 +1,5 @@
+# TODO Rename to productMenu
+# TODO Accept a product as an arg
 NikkiApp.productService = ({media, size} = {media: '', size: ''}) ->
 
   amount = ->
@@ -10,7 +12,7 @@ NikkiApp.productService = ({media, size} = {media: '', size: ''}) ->
 
   sizes = ->
     return ['18x24', '24x18'] if media == 'canvas'
-    return ["4x6", "5x7", "8x10", "wallet"] if media == 'print'
+    return ['4x6', '5x7', '8x10', 'wallet'] if media == 'print'
     []
 
   thicknesses = ->

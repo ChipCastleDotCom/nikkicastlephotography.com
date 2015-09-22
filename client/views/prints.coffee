@@ -1,5 +1,3 @@
-NikkiApp.products = new ReactiveDict()
-
 Template.prints.helpers
   products: ->
     Products.find()

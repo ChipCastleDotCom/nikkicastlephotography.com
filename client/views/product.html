@@ -14,15 +14,33 @@
               <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
             </div>
             <form>
-              {{> quantity this}}
-
-              {{#if sizesFor media}}
-                {{> sizeMenu this}}
+              {{#if hasMediaTypesAvailableFor this}}
+                {{> mediaTypesMenu this}}
               {{/if}}
-              {{#if thicknessFor media}}
+
+              {{#if hasSizes}}
+                <div class="form-group form-input-xs">
+                  <label class="col-xs-offset-1 col-xs-5 control-label text-right">Size</label>
+                  <div class="col-xs-6">
+                    {{this.media}}
+                    {{media}}
+                    <select class="form-control input-sm item-size" data-size-trigger="{{_id}}">
+                      {{#each sizesFor this}}
+                        <option value={{this}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#if hasThicknessesFor media}}
                 {{> thicknessMenu}}
               {{/if}}
-              <a class="btn btn-success item_add" role="button">Purchase for {{> price this}}</a>
+
+              {{> quantity this}}
+
+              <a class="btn btn-success item_add" role="button">Purchase
+                for {{priceFor this}}</a>
             </form>
           </span>
         </div>

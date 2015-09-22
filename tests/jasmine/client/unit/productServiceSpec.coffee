@@ -6,6 +6,14 @@ describe 'productService', ->
       service = NikkiApp.productService()
       expect(service.amount()).toEqual '3.00'
 
+    it 'expect empty string media amount to return 3.00', ->
+      service = NikkiApp.productService(media: '')
+      expect(service.amount()).toEqual '3.00'
+
+    it 'expect undefined media amount to return 3.00', ->
+      service = NikkiApp.productService(media: undefined)
+      expect(service.amount()).toEqual '3.00'
+
     it 'expect funky media amount to return 3.00', ->
       service = NikkiApp.productService media: 'funky'
       expect(service.amount()).toEqual '3.00'
@@ -74,6 +82,14 @@ describe 'productService', ->
       service = NikkiApp.productService()
       expect(service.sizes()).toEqual []
 
+    it 'expect empty string media sizes to return []', ->
+      service = NikkiApp.productService(media: '')
+      expect(service.sizes()).toEqual []
+
+    it 'expect undefined media sizes to return []', ->
+      service = NikkiApp.productService(media: undefined)
+      expect(service.sizes()).toEqual []
+
     it 'expect funky media sizes to return []', ->
       service = NikkiApp.productService(media: 'funky')
       expect(service.sizes()).toEqual []
@@ -96,6 +112,14 @@ describe 'productService', ->
 
     it 'expect funky thicknesses to return []', ->
       service = NikkiApp.productService(media: 'funky')
+      expect(service.thicknesses()).toEqual []
+
+    it 'expect empty string thicknesses to return []', ->
+      service = NikkiApp.productService(media: '')
+      expect(service.thicknesses()).toEqual []
+
+    it 'expect undefined thicknesses to return []', ->
+      service = NikkiApp.productService(media: undefined)
       expect(service.thicknesses()).toEqual []
 
     it 'expect print thicknesses to return []', ->

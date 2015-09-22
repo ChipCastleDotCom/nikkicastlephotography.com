@@ -26,12 +26,27 @@ UI.registerHelper 'cssClass', (index) ->
   if index == 0 then 'active' else ''
 
 UI.registerHelper 'priceFor', (product) ->
-  product = NikkiApp.products.get product._id
+  console.log 'priceFor'
+  #product = NikkiApp.products.get product._id
+  product = Template.instance().currentProduct.get()
+  console.dir product
   service = NikkiApp.productService media: product.media, size: product.size
   numeral(service.amount()).format('$0,0.00')
 
-UI.registerHelper 'sizesFor', (media) ->
-  NikkiApp.productService(media: media).sizes()
+UI.registerHelper 'sizesFor', (product) ->
+  NikkiApp.productService(media: product.media).sizes()
+
+UI.registerHelper 'hasThicknessesFor', (media) ->
+  thicknesses = NikkiApp.productService(media: media).thicknesses()
+  thicknesses.length > 0
 
 UI.registerHelper 'thicknessFor', (media) ->
-  NikkiApp.productService(media: media).thicknesses()
+  thicknesses = NikkiApp.productService(media: media).thicknesses()
+  thicknesses.length > 0 ? thicknesses : false
+
+UI.registerHelper 'hasMediaTypesAvailableFor', (product) ->
+  mediaTypesAvailable = NikkiApp.mediaService(product: product).typesAvailable()
+  mediaTypesAvailable.length > 0
+
+UI.registerHelper 'mediaTypesAvailableFor', (product) ->
+  NikkiApp.mediaService(product: product).typesAvailable()

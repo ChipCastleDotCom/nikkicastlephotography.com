@@ -1,0 +1,1 @@
+NikkiApp.products = new ReactiveDict()

@@ -16,6 +16,15 @@ Schemas.Products = new SimpleSchema
     type: String
     defaultValue: 'print'
     allowedValues: ['print', 'canvas', 'postcard', 'bookmark']
+    autoform:
+      afFieldInput:
+        type: 'hidden'
+  postcard:
+    type: Boolean
+    label: 'Available for sale as a Postcard'
+  bookmark:
+    type: Boolean
+    label: 'Available for sale as a Bookmark'
   dateOfPhoto:
     type: Date
     defaultValue: new Date()

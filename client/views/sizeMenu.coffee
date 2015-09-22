@@ -1,7 +1,14 @@
 Template.sizeMenu.events
-  'change .item_size': (evt) ->
-    name = $(evt.currentTarget).data 'size-trigger'
-    size = $(evt.currentTarget).val()
-    product = NikkiApp.products.get name
-    opts = _.extend product, size: size
-    NikkiApp.products.set name, opts
+  'change .item-size': (evt) ->
+    console.log 'change .item-size'
+    #id = $(evt.currentTarget).data 'size-trigger'
+    #console.log 'id ', id
+    #media = $(evt.currentTarget).data 'media-trigger'
+    #console.log 'media', media
+    #size = $(evt.currentTarget).val()
+    #console.log 'size ', size
+    #product = NikkiApp.products.get id
+    #console.dir product
+    #opts = _.extend product, size: size
+    #console.log 'opts ', opts
+    #NikkiApp.products.set id, opts
