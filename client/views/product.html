@@ -10,16 +10,15 @@
         <div class="form-bg">
           <span class="simpleCart_shelfItem">
             <div class="product-info">
-              <h4 class="text-muted"><span class="item_name">{{filename}}</span></h4>
-              <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
+              <h4 class="text-muted"><span class="item_name">{{itemName}}</span></h4>
+              <h4 class="text-muted"><span class="item_price">{{amount}}</span> each</h4>
             </div>
             <form>
               {{#if hasMediaTypesAvailableFor this}}
                 {{> mediaTypesMenu this}}
               {{/if}}
 
-              {{#if hasSizes}}
-                {{this.media}}
+              {{#if sizes}}
                 {{media}}
                 <div class="form-group form-input-xs">
                   <label class="col-xs-offset-1 col-xs-5 control-label text-right">Size</label>
@@ -33,14 +32,23 @@
                 </div>
               {{/if}}
 
-              {{#if hasThicknessesFor media}}
-                {{> thicknessMenu}}
+              {{#if thicknesses}}
+                <div class="form-group form-input-xs">
+                  <label class="col-xs-offset-1 col-xs-5 control-label text-right">Thickness</label>
+                  <div class="col-xs-6">
+                    <select class="form-control input-sm item-thickness" data-thickness-trigger="{{_id}}">
+                      {{#each thicknesses}}
+                        <option value={{this}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
               {{/if}}
 
               {{> quantity this}}
 
               <a class="btn btn-success item_add" role="button">Purchase
-                for {{priceFor this}}</a>
+                for {{itemTotal}}</a>
             </form>
           </span>
         </div>

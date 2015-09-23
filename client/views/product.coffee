@@ -1,20 +1,40 @@
 Template.product.onCreated ->
-  media = @data.media
   size = '4x6'
-
   quantity = 1
+  @size = new ReactiveVar size
+  @quantity = new ReactiveVar quantity
+  productOptions = media: @data.media, size: size, quantity: quantity
 
-  @currentProduct = new ReactiveVar media: media, quantity: quantity, size: size
-  @hasSizes = new ReactiveVar _.contains ['print', 'canvas'], media
-  menuOptions = NikkiApp.productService(media: media).sizes()
-  @sizes = new ReactiveVar menuOptions
+  @filename = new ReactiveVar @data.filename
+  @currentProduct = new ReactiveVar productOptions
+
+  menuOptions = NikkiApp.productService media: @data.media, size: size
+  @thicknesses = new ReactiveVar menuOptions.thicknesses()
+  @sizes = new ReactiveVar menuOptions.sizes()
+  @amount = new ReactiveVar menuOptions.amount()
 
 Template.product.helpers
-  hasSizes: ->
-    Template.instance().hasSizes.get()
+  itemName: ->
+    filename = Template.instance().filename.get()
+    item = Template.instance().currentProduct.get()
+    itemName = "#{filename}-#{item.media}-#{item.size}"
+    itemName += "-#{item.thickness}" if item.thickness
+    itemName
 
   sizes: ->
     Template.instance().sizes.get()
+
+  thicknesses: ->
+    Template.instance().thicknesses.get()
+
+  amount: ->
+    amount = Template.instance().amount.get()
+    numeral(amount).format('$0,0.00')
+
+  itemTotal: ->
+    amount = Template.instance().amount.get()
+    quantity = Template.instance().quantity.get()
+    numeral(amount * quantity).format('$0,0.00')
 
 Template.product.events
   'change': (evt, template) ->
@@ -37,16 +57,40 @@ Template.product.events
 
     if id
       product = template.currentProduct.get()
-      newOptions = _.extend product, options
-      template.currentProduct.set newOptions
-      value = _.contains ['print', 'canvas'], product.media
-      template.hasSizes.set value
-      menuOptions = NikkiApp.productService(media: product.media).sizes()
-      template.sizes.set menuOptions
+      #NikkiApp.products.set id, _.extend product, options
+      template.currentProduct.set = _.extend product, options
+
+      size = template.size.get()
+      menuOptions = NikkiApp.productService media: product.media, size: size
+      template.sizes.set menuOptions.sizes()
+      template.thicknesses.set menuOptions.thicknesses()
+      template.amount.set menuOptions.amount()
 
   'keyup .item_quantity': (evt, template) ->
     id = $(evt.currentTarget).data 'quantity-trigger'
     quantity = $(evt.currentTarget).val()
+    template.quantity.set quantity
+
+  'click .item_add': (evt, template) ->
+    console.log 'click .item_add'
+
+    # Fetch id
+    id = template.data._id
+    console.log 'update product with id ', id
+    # Fetch product
     product = template.currentProduct.get()
-    opts = _.extend product, quantity: quantity
-    NikkiApp.products.set id, opts
+    # Set ReactiveDict for products using generated id
+    #NikkiApp.products.set id, product
+
+    # Generate an id
+    #randomId = Random.id()
+    #console.log 'Random id ', randomId
+
+    ## Update DOM in 3 places
+    #template.data._id = randomId
+    #console.log 'after template.data._id'
+    #console.dir template.data
+
+  'click .simpleCart_empty': (evt, template) ->
+    console.log 'click .simpleCart_empty'
+    NikkiApp.products = {}
