@@ -52,6 +52,3 @@ requireLogin = () ->
   return
 
 Router.onBeforeAction requireLogin, only: ['manageProducts', 'manageCarouselItems']
-
-Accounts.onLogin ->
-  Router.go 'manageProducts'
