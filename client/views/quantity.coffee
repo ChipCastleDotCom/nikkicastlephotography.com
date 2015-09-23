@@ -1,2 +1,2 @@
 Template.quantity.onRendered ->
-  $('.item_quantity').numeric()
+  $('.item-quantity').numeric()

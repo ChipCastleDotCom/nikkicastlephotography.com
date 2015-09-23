@@ -1,96 +1,88 @@
+setAmount = (template) ->
+  media = template.item.get 'media'
+  size = template.item.get 'size'
+  service = NikkiApp.productService(media: media, size: size)
+  template.item.set 'amount', service.amount()
+  return
+
 Template.product.onCreated ->
+  media = 'print'
   size = '4x6'
-  quantity = 1
-  @size = new ReactiveVar size
-  @quantity = new ReactiveVar quantity
-  productOptions = media: @data.media, size: size, quantity: quantity
+  amount = NikkiApp.productService(media: media, size: size).amount()
 
-  @filename = new ReactiveVar @data.filename
-  @currentProduct = new ReactiveVar productOptions
-
-  menuOptions = NikkiApp.productService media: @data.media, size: size
-  @thicknesses = new ReactiveVar menuOptions.thicknesses()
-  @sizes = new ReactiveVar menuOptions.sizes()
-  @amount = new ReactiveVar menuOptions.amount()
+  @item = new ReactiveDict()
+  @item.set 'media', media
+  @item.set 'size', size
+  @item.set 'quantity', 1
+  @item.set 'amount', amount
+  @item.set 'filename', @data.filename
 
 Template.product.helpers
   itemName: ->
-    filename = Template.instance().filename.get()
-    item = Template.instance().currentProduct.get()
-    itemName = "#{filename}-#{item.media}-#{item.size}"
-    itemName += "-#{item.thickness}" if item.thickness
+    filename = Template.instance().item.get('filename')
+    media = Template.instance().item.get('media')
+    size = Template.instance().item.get('size')
+    thickness = Template.instance().item.get('thickness')
+    itemName = "#{filename}-#{media}-#{size}"
+    itemName += "-#{thickness}" if thickness
     itemName
 
   sizes: ->
-    Template.instance().sizes.get()
+    media = Template.instance().item.get('media')
+    NikkiApp.productService(media: media).sizes()
 
   thicknesses: ->
-    Template.instance().thicknesses.get()
+    media = Template.instance().item.get('media')
+    NikkiApp.productService(media: media).thicknesses()
 
   amount: ->
-    amount = Template.instance().amount.get()
+    amount = Template.instance().item.get('amount')
     numeral(amount).format('$0,0.00')
 
   itemTotal: ->
-    amount = Template.instance().amount.get()
-    quantity = Template.instance().quantity.get()
+    amount = Template.instance().item.get('amount')
+    quantity = Template.instance().item.get('quantity')
     numeral(amount * quantity).format('$0,0.00')
 
 Template.product.events
-  'change': (evt, template) ->
-    value = $(evt.currentTarget).val()
-    data = $(evt.currentTarget).data()
-    id = undefined
+  'change .item_media': (evt, template) ->
+    media = $(evt.currentTarget).val()
+    template.item.set 'media', media
 
-    if data.quantityTrigger
-      id = data.quantityTrigger
-      options = quantity: value
-    else if data.mediaTrigger
-      id = data.mediaTrigger
-      options = media: value
-    else if data.sizeTrigger
-      id = data.sizeTrigger
-      options = size: value
-    else if data.thicknessTrigger
-      id = data.thicknessTrigger
-      options = thickness: value
+    size = template.item.get 'size'
+    service = NikkiApp.productService(media: media, size: size)
 
-    if id
-      product = template.currentProduct.get()
-      #NikkiApp.products.set id, _.extend product, options
-      template.currentProduct.set = _.extend product, options
+    if media == 'canvas'
+      template.item.set 'thickness', '0.75'
+      unless _.contains ['18x24', '24x18'], size
+        template.item.set 'size', '18x24'
+    else if media == 'print'
+      template.item.set 'thickness', ''
+      unless _.contains ['4x6', '5x7', '8x10', 'wallet'], size
+        template.item.set 'size', '4x6'
+    else
+      template.item.set 'thickness', ''
+      template.item.set 'size', ''
 
-      size = template.size.get()
-      menuOptions = NikkiApp.productService media: product.media, size: size
-      template.sizes.set menuOptions.sizes()
-      template.thicknesses.set menuOptions.thicknesses()
-      template.amount.set menuOptions.amount()
+    template.item.set 'amount', service.amount()
+    return
+
+  'change .item_size': (evt, template) ->
+    size = $(evt.currentTarget).val()
+    template.item.set 'size', size
+    setAmount(template)
+    return
+
+  'change .item_thickness': (evt, template) ->
+    thickness = $(evt.currentTarget).val()
+    template.item.set 'thickness', thickness
 
   'keyup .item_quantity': (evt, template) ->
-    id = $(evt.currentTarget).data 'quantity-trigger'
     quantity = $(evt.currentTarget).val()
-    template.quantity.set quantity
-
-  'click .item_add': (evt, template) ->
-    console.log 'click .item_add'
-
-    # Fetch id
-    id = template.data._id
-    console.log 'update product with id ', id
-    # Fetch product
-    product = template.currentProduct.get()
-    # Set ReactiveDict for products using generated id
-    #NikkiApp.products.set id, product
-
-    # Generate an id
-    #randomId = Random.id()
-    #console.log 'Random id ', randomId
-
-    ## Update DOM in 3 places
-    #template.data._id = randomId
-    #console.log 'after template.data._id'
-    #console.dir template.data
+    template.item.set 'quantity', quantity
+    setAmount(template)
+    return
 
   'click .simpleCart_empty': (evt, template) ->
-    console.log 'click .simpleCart_empty'
     NikkiApp.products = {}
+    return
