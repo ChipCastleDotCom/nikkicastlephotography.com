@@ -9,3 +9,9 @@ Meteor.publish 'carouselitems', ->
 
 Meteor.publish 'carouselphotos', ->
   CarouselPhotos.find()
+
+Meteor.publish 'homeitems', ->
+  HomeItems.find()
+
+Meteor.publish 'homephotos', ->
+  HomePhotos.find()

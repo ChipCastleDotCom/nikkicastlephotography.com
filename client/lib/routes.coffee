@@ -31,6 +31,12 @@ Router.map ->
       return
     @next
     return
+  @route 'manageHomePhotos',
+    waitOn: ->
+      [
+        Meteor.subscribe 'homeitems'
+        Meteor.subscribe 'homephotos'
+      ]
   @route 'manageCarouselItems',
     waitOn: ->
       [
@@ -51,4 +57,4 @@ requireLogin = () ->
     @next()
   return
 
-Router.onBeforeAction requireLogin, only: ['manageProducts', 'manageCarouselItems']
+Router.onBeforeAction requireLogin, only: ['manageProducts', 'manageCarouselItems', 'manageHomePhotos']
