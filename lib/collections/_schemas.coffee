@@ -1,6 +1,6 @@
 @Schemas = {}
 
-FS.debug = false
+FS.debug = true
 
 addWatermark = (fileObj, readStream, writeStream) ->
   gm(readStream, fileObj.name()).size {bufferStream: true}, (err, size) ->

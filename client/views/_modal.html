@@ -8,10 +8,16 @@
           {{#if description}}
             <p>{{description}}</p>
           {{/if}}
-          <h4 class="modal-title" id="myModalLabel">Filename: {{filename}}</h4>
+          {{#if filename}}
+            <h4 class="modal-title" id="myModalLabel">Filename: {{filename}}</h4>
+          {{/if}}
         </div>
         <div class="modal-body">
-          <img class="img-responsive" src="{{productPhoto this thumb=false}}">
+          {{#if isCarouselPhoto photoType}}
+            <img class="img-responsive" src="{{carouselPhoto this thumb=false}}">
+          {{else}}
+            <img class="img-responsive" src="{{productPhoto this thumb=false}}">
+          {{/if}}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
