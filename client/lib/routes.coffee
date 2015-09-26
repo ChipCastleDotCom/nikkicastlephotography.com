@@ -5,6 +5,11 @@ Router.configure
 Router.map ->
   @route 'home',
     path: '/'
+    waitOn: ->
+      [
+        Meteor.subscribe 'homeitems'
+        Meteor.subscribe 'homephotos'
+      ]
   @route 'about'
   @route 'prints',
     waitOn: ->
