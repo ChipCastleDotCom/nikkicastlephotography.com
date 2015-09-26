@@ -1,34 +1,26 @@
-UI.registerHelper 'productPhoto', (product, thumbnail) ->
-  id = product.photo
-  console.log 'id ', id
-  console.log 'productPhoto thumbnail'
-  console.dir thumbnail
-  photo = ProductPhotos.findOne _id: id
-  console.dir photo
-  if photo
-    store = if thumbnail.hash.thumb then 'productthumbnails' else 'productphotos'
-    photo.url(store: store)
-
 UI.registerHelper 'carouselPhoto', (carousel, thumbnail) ->
   id = carousel._id
-  console.log id
-  #photo = CarouselPhotos.findOne _id: id
   item = CarouselItems.findOne _id: id
-  console.log 'carouselPhoto thumbnail'
-  console.dir thumbnail
-  console.log 'carouselPhoto item'
-  console.dir item
   if item
     store = if thumbnail.hash.thumb then 'carouselthumbnails' else 'carouselphotos'
-    console.log 'store'
-    console.log store
     item.url(store: store)
 
-UI.registerHelper 'isCarouselPhoto', (photoType) ->
-  console.log 'isCarouselPhoto '
-  console.dir @
-  console.log photoType == 'carousel'
-  photoType == 'carousel'
+UI.registerHelper 'photo', (options) ->
+  id = options.hash.id if options and options.hash
+  thumb = options.hash.thumb if options and options.hash
+  type = options.hash.type if options and options.hash
+
+  photo = undefined
+  if type == 'carousel'
+    photo = CarouselPhotos.findOne _id: id
+  else if type == 'home'
+    photo = HomePhotos.findOne _id: id
+  else
+    photo = ProductPhotos.findOne _id: id
+
+  if photo
+    store = if thumb then "#{type}thumbnails" else "#{type}photos"
+    photo.url(store: store)
 
 UI.registerHelper 'addIndex', (all) ->
   _.map all, (val, index) ->

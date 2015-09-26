@@ -2,9 +2,9 @@
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
-        <img width="300" src="{{productPhoto this thumb=false}}">
+        <img width="300" src="{{photo record=this type='product' thumb=false}}">
       </a>
-      {{> _modal this }}
+      {{> _modal }}
       <div class="caption text-center">
         <h2>{{description}}</h2>
         <div class="form-bg">

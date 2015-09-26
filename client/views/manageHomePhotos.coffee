@@ -3,11 +3,11 @@ Template.manageHomePhotos.onRendered ->
 
 Template.manageHomePhotos.helpers
   items: ->
-    HomePhotos.find()
+    HomeItems.find()
 
 Template.manageHomePhotos.events
   'click .button': (event) ->
     $ele = $(event.currentTarget)
     id = $ele.attr 'data-id'
-    HomePhotos.remove({_id: id})
+    HomeItems.remove({_id: id})
     return

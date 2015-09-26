@@ -31,3 +31,9 @@ createThumb = (fileObj, readStream, writeStream) ->
     new (FS.Store.FileSystem)('carouselphotos', transformWrite: addWatermark),
     new (FS.Store.FileSystem)('carouselthumbnails', transformWrite: createThumb)
   ])
+
+@HomePhotos = new (FS.Collection)('homephotos',
+  stores: [
+    new (FS.Store.FileSystem)('homephotos', transformWrite: addWatermark),
+    new (FS.Store.FileSystem)('homethumbnails', transformWrite: createThumb)
+  ])

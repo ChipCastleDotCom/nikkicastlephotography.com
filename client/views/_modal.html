@@ -13,11 +13,7 @@
           {{/if}}
         </div>
         <div class="modal-body">
-          {{#if isCarouselPhoto photoType}}
-            <img class="img-responsive" src="{{carouselPhoto this thumb=false}}">
-          {{else}}
-            <img class="img-responsive" src="{{productPhoto this thumb=false}}">
-          {{/if}}
+          <img class="img-responsive" src="{{photo id=this.photo type=this.type thumb=false}}">
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
