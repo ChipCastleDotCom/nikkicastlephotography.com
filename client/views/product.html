@@ -2,27 +2,52 @@
   <div class="col-sm-6 col-md-4">
     <div class="thumbnail">
       <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
-        <img width="300" src="{{productPhoto this thumb=false}}">
+        <img width="300" src="{{photo record=this type='product' thumb=false}}">
       </a>
-      {{> _modal this }}
+      {{> _modal }}
       <div class="caption text-center">
         <h2>{{description}}</h2>
         <div class="form-bg">
           <span class="simpleCart_shelfItem">
             <div class="product-info">
-              <h4 class="text-muted"><span class="item_name">{{filename}}</span></h4>
-              <h4 class="text-muted"><span class="item_price">{{priceFor this}}</span> each</h4>
+              <h4 class="text-muted"><span class="item_name">{{itemName}}</span></h4>
+              <h4 class="text-muted"><span class="item_price">{{amount}}</span> each</h4>
             </div>
             <form>
+              {{#if hasMediaTypesAvailableFor this}}
+                {{> mediaTypesMenu this}}
+              {{/if}}
+
+              {{#if sizes}}
+                <div class="form-group form-input-xs">
+                  <label class="col-xs-offset-1 col-xs-5 control-label text-right">Size</label>
+                  <div class="col-xs-6">
+                    <select class="form-control input-sm item_size" data-size-trigger="{{_id}}">
+                      {{#each sizes this}}
+                        <option value={{this}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              {{/if}}
+
+              {{#if thicknesses}}
+                <div class="form-group form-input-xs">
+                  <label class="col-xs-offset-1 col-xs-5 control-label text-right">Thickness</label>
+                  <div class="col-xs-6">
+                    <select class="form-control input-sm item_thickness" data-thickness-trigger="{{_id}}">
+                      {{#each thicknesses}}
+                        <option value={{this}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              {{/if}}
+
               {{> quantity this}}
 
-              {{#if sizesFor media}}
-                {{> sizeMenu this}}
-              {{/if}}
-              {{#if thicknessFor media}}
-                {{> thicknessMenu}}
-              {{/if}}
-              <a class="btn btn-success item_add" role="button">Purchase for {{> price this}}</a>
+              <a class="btn btn-success item_add" role="button">Purchase
+                for {{itemTotal}}</a>
             </form>
           </span>
         </div>

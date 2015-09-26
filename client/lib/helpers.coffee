@@ -1,15 +1,25 @@
-UI.registerHelper 'productPhoto', (product, thumbnail) ->
-  id = product.photo
-  photo = ProductPhotos.findOne _id: id
-  if photo
-    store = if thumbnail.hash.thumb then 'productthumbnails' else 'productphotos'
-    photo.url(store: store)
-
-UI.registerHelper 'carouselPhoto', (carouselItem, thumbnail) ->
-  id = carouselItem.photo
-  photo = CarouselPhotos.findOne _id: id
-  if photo
+UI.registerHelper 'carouselPhoto', (carousel, thumbnail) ->
+  id = carousel._id
+  item = CarouselItems.findOne _id: id
+  if item
     store = if thumbnail.hash.thumb then 'carouselthumbnails' else 'carouselphotos'
+    item.url(store: store)
+
+UI.registerHelper 'photo', (options) ->
+  id = options.hash.id if options and options.hash
+  thumb = options.hash.thumb if options and options.hash
+  type = options.hash.type if options and options.hash
+
+  photo = undefined
+  if type == 'carousel'
+    photo = CarouselPhotos.findOne _id: id
+  else if type == 'home'
+    photo = HomePhotos.findOne _id: id
+  else
+    photo = ProductPhotos.findOne _id: id
+
+  if photo
+    store = if thumb then "#{type}thumbnails" else "#{type}photos"
     photo.url(store: store)
 
 UI.registerHelper 'addIndex', (all) ->
@@ -25,13 +35,12 @@ UI.registerHelper 'firstIndex', (index) ->
 UI.registerHelper 'cssClass', (index) ->
   if index == 0 then 'active' else ''
 
-UI.registerHelper 'priceFor', (product) ->
-  product = NikkiApp.products.get product._id
-  service = NikkiApp.productService media: product.media, size: product.size
-  numeral(service.amount()).format('$0,0.00')
+UI.registerHelper 'sizesFor', (product) ->
+  NikkiApp.productService(media: product.media).sizes()
 
-UI.registerHelper 'sizesFor', (media) ->
-  NikkiApp.productService(media: media).sizes()
+UI.registerHelper 'hasMediaTypesAvailableFor', (product) ->
+  mediaTypesAvailable = NikkiApp.mediaService(product: product).typesAvailable()
+  mediaTypesAvailable.length > 0
 
-UI.registerHelper 'thicknessFor', (media) ->
-  NikkiApp.productService(media: media).thicknesses()
+UI.registerHelper 'mediaTypesAvailableFor', (product) ->
+  NikkiApp.mediaService(product: product).typesAvailable()

@@ -1,6 +1,6 @@
 @Schemas = {}
 
-FS.debug = false
+FS.debug = true
 
 addWatermark = (fileObj, readStream, writeStream) ->
   gm(readStream, fileObj.name()).size {bufferStream: true}, (err, size) ->
@@ -30,4 +30,10 @@ createThumb = (fileObj, readStream, writeStream) ->
   stores: [
     new (FS.Store.FileSystem)('carouselphotos', transformWrite: addWatermark),
     new (FS.Store.FileSystem)('carouselthumbnails', transformWrite: createThumb)
+  ])
+
+@HomePhotos = new (FS.Collection)('homephotos',
+  stores: [
+    new (FS.Store.FileSystem)('homephotos', transformWrite: addWatermark),
+    new (FS.Store.FileSystem)('homethumbnails', transformWrite: createThumb)
   ])

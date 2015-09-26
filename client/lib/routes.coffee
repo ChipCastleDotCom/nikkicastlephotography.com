@@ -5,6 +5,11 @@ Router.configure
 Router.map ->
   @route 'home',
     path: '/'
+    waitOn: ->
+      [
+        Meteor.subscribe 'homeitems'
+        Meteor.subscribe 'homephotos'
+      ]
   @route 'about'
   @route 'prints',
     waitOn: ->
@@ -31,6 +36,12 @@ Router.map ->
       return
     @next
     return
+  @route 'manageHomePhotos',
+    waitOn: ->
+      [
+        Meteor.subscribe 'homeitems'
+        Meteor.subscribe 'homephotos'
+      ]
   @route 'manageCarouselItems',
     waitOn: ->
       [
@@ -51,7 +62,4 @@ requireLogin = () ->
     @next()
   return
 
-Router.onBeforeAction requireLogin, only: ['manageProducts', 'manageCarouselItems']
-
-Accounts.onLogin ->
-  Router.go 'manageProducts'
+Router.onBeforeAction requireLogin, only: ['manageProducts', 'manageCarouselItems', 'manageHomePhotos']

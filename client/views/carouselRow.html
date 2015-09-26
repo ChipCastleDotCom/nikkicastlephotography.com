@@ -1,8 +1,14 @@
 <template name="carouselRow">
   <tr>
-    <td><img src="{{carouselPhoto this thumb=true}}"></td>
     <td>
-      <button type="button" class="button btn btn-default btn-danger" data-id="{{this._id}}">
+      <a href="#" data-toggle="modal" data-target="#{{_id}}">
+        <img class="img-responsive" src="{{photo id=this.photo type='carousel' thumb=true}}">
+      </a>
+      {{> _modal _id=_id photo=this.photo type='carousel'}}
+    </td>
+    <td>
+      <button type="button" class="button btn btn-default btn-danger"
+        data-id="{{_id}}">
         Remove</button>
     </td>
   </tr>
