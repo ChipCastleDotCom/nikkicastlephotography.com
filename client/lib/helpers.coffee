@@ -1,9 +1,8 @@
-UI.registerHelper 'carouselPhoto', (carousel, thumbnail) ->
-  id = carousel._id
-  item = CarouselItems.findOne _id: id
+UI.registerHelper 'carouselPhoto', (carousel) ->
+  id = carousel.value.photo
+  item = CarouselPhotos.findOne _id: id
   if item
-    store = if thumbnail.hash.thumb then 'carouselthumbnails' else 'carouselphotos'
-    item.url(store: store)
+    item.url store: 'carouselphotos'
 
 UI.registerHelper 'photo', (options) ->
   id = options.hash.id if options and options.hash
@@ -20,7 +19,7 @@ UI.registerHelper 'photo', (options) ->
 
   if photo
     store = if thumb then "#{type}thumbnails" else "#{type}photos"
-    photo.url(store: store)
+    photo.url store: store
 
 UI.registerHelper 'addIndex', (all) ->
   _.map all, (val, index) ->

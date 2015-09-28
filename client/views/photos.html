@@ -17,7 +17,7 @@
     <div class="carousel-inner" role="listbox">
       {{#each addIndex images}}
         <div class="item {{#if firstIndex index}} active{{/if}}">
-          <img src="{{carouselPhoto this.value thumb=false}}">
+          <img src="{{carouselPhoto this}}">
         </div>
       {{/each}}
     </div>
