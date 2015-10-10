@@ -1,28 +1,39 @@
 <template name="product">
-  <div class="col-sm-6 col-md-4">
+  <div class="col-xs-12 col-sm-6">
     <div class="thumbnail">
       <a href="#" class="grid-item" data-toggle="modal" data-target="#{{_id}}">
-        <img width="300" src="{{photo record=this type='product' thumb=false}}">
+        <img class="img-responsive" src="{{photo id=this.photo type='product' thumb=false}}">
       </a>
-      {{> _modal }}
-      <div class="caption text-center">
-        <h2>{{description}}</h2>
+      {{> _modal _id=_id photo=this.photo type='product'}}
+      <div class="caption">
+        <h2 class="text-center">{{description}}</h2>
         <div class="form-bg">
           <span class="simpleCart_shelfItem">
-            <div class="product-info">
+            <div class="product-info text-center">
               <h4 class="text-muted"><span class="item_name">{{itemName}}</span></h4>
               <h4 class="text-muted"><span class="item_price">{{amount}}</span> each</h4>
             </div>
-            <form>
+
+            <form class="form-horizontal product-form">
               {{#if hasMediaTypesAvailableFor this}}
-                {{> mediaTypesMenu this}}
+                <div class="form-group">
+                  <label class="col-xs-offset-1 col-xs-4 control-label
+                    text-right">Media type</label>
+                  <div class="col-xs-6">
+                    <select class="form-control item_media" data-media-trigger="{{_id}}">
+                      {{#each mediaTypesAvailableFor this}}
+                        <option value={{this}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
               {{/if}}
 
               {{#if sizes}}
-                <div class="form-group form-input-xs">
-                  <label class="col-xs-offset-1 col-xs-5 control-label text-right">Size</label>
+                <div class="form-group">
+                  <label class="col-xs-offset-1 col-xs-4 control-label text-right">Size</label>
                   <div class="col-xs-6">
-                    <select class="form-control input-sm item_size" data-size-trigger="{{_id}}">
+                    <select class="form-control item_size" data-size-trigger="{{_id}}">
                       {{#each sizes this}}
                         <option value={{this}}>{{this}}</option>
                       {{/each}}
@@ -32,10 +43,10 @@
               {{/if}}
 
               {{#if thicknesses}}
-                <div class="form-group form-input-xs">
-                  <label class="col-xs-offset-1 col-xs-5 control-label text-right">Thickness</label>
+                <div class="form-group">
+                  <label class="col-xs-offset-1 col-xs-4 control-label text-right">Thickness</label>
                   <div class="col-xs-6">
-                    <select class="form-control input-sm item_thickness" data-thickness-trigger="{{_id}}">
+                    <select class="form-control item_thickness" data-thickness-trigger="{{_id}}">
                       {{#each thicknesses}}
                         <option value={{this}}>{{this}}</option>
                       {{/each}}
@@ -44,10 +55,17 @@
                 </div>
               {{/if}}
 
-              {{> quantity this}}
+              <div class="form-group">
+                <label class="col-xs-offset-1 col-xs-4 control-label text-right">Quantity</label>
+                <div class="col-xs-6">
+                  <input type="text" class="form-control item_quantity"
+                  max-length="3" value="1" placeholder="Quantity" data-quantity-trigger="{{_id}}">
+                </div>
+              </div>
 
-              <a class="btn btn-success item_add" role="button">Purchase
-                for {{itemTotal}}</a>
+              <div class="row text-center">
+                <a class="btn btn-success item_add" role="button">Purchase for {{itemTotal}}</a>
+              </div>
             </form>
           </span>
         </div>

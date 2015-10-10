@@ -17,6 +17,9 @@ Template.product.onCreated ->
   @item.set 'amount', amount
   @item.set 'filename', @data.filename
 
+Template.product.onRendered ->
+  $('.item-quantity').numeric()
+
 Template.product.helpers
   itemName: ->
     filename = Template.instance().item.get('filename')
