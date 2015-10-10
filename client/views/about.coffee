@@ -1,2 +1,2 @@
-Template.contact.onRendered ->
+Template.about.onRendered ->
   $.backstretch 'destroy', false
