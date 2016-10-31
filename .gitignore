@@ -1,1 +1,3 @@
-environments
+.deploy-production/
+.deploy-staging/
+node_modules/
