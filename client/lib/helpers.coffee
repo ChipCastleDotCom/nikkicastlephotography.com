@@ -1,8 +1,11 @@
+photoPath = (photo, store) ->
+  '/cfs/files/' + store + '/' + photo.copies[store].key
+
 UI.registerHelper 'carouselPhoto', (carousel) ->
   id = carousel.value.photo
-  item = CarouselPhotos.findOne _id: id
-  if item
-    item.url store: 'carouselphotos'
+  photo = CarouselPhotos.findOne _id: id
+  if photo
+    photoPath photo, 'carouselphotos'
 
 UI.registerHelper 'photo', (options) ->
   id = options.hash.id if options and options.hash
@@ -19,7 +22,7 @@ UI.registerHelper 'photo', (options) ->
 
   if photo
     store = if thumb then "#{type}thumbnails" else "#{type}photos"
-    photo.url store: store
+    photoPath photo, store
 
 UI.registerHelper 'addIndex', (all) ->
   _.map all, (val, index) ->
