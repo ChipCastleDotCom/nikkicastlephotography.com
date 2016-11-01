@@ -5,7 +5,9 @@ Template.home.onRendered ->
   if photos.length
     _.each photos, (obj) ->
       photo = HomePhotos.findOne _id: obj.photo
-      backstretchPhotos.push photo.url(store: 'homephotos') if photo
+      if photo
+        file = '/cfs/files/homephotos/' + photo.copies['homephotos'].key
+        backstretchPhotos.push file
   else
     backstretchPhotos = [
       '/images/lakemood9.jpg'
