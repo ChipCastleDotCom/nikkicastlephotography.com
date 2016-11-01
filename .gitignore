@@ -1,3 +1,5 @@
 .deploy-production/
 .deploy-staging/
 node_modules/
+private/
+public/cfs/
