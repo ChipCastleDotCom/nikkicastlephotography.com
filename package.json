@@ -1,6 +1,6 @@
 {
   "name": "nikkicastlephotography.com",
   "scripts": {
-    "start": "meteor --settings environments/development/settings.json"
+    "start": "meteor --settings private/environments/development/settings.json"
   }
 }
