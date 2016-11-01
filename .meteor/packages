@@ -26,7 +26,6 @@ yogiben:autoform-file
 cfs:graphicsmagick
 email
 numeral:numeral
-velocity:html-reporter
 reactive-dict
 tyler:numeric
 momentjs:moment
